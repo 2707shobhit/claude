@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech &amp; PM Quotes</title>
+<style>
+  :root {
+    --bg: #eef1f6;
+    --card-bg: #ffffff;
+    --text: #22262f;
+    --accent: #5b6cf0;
+    --accent-hover: #4756d6;
+    --muted: #767d8c;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eef1f6 0%, #e4e9f5 100%);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    padding: 24px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(30, 40, 70, 0.12), 0 2px 8px rgba(30, 40, 70, 0.06);
+    padding: 56px 48px;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .quote-mark {
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+  }
+
+  #quote-text {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text);
+    margin: 0 0 24px 0;
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #quote-author {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 32px 0;
+    font-style: italic;
+  }
+
+  button {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    font-family: inherit;
+  }
+
+  button:hover {
+    background: var(--accent-hover);
+  }
+
+  button:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 480px) {
+    .card {
+      padding: 40px 28px;
+    }
+    #quote-text {
+      font-size: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="quote-mark">&ldquo;</div>
+    <p id="quote-text"></p>
+    <p id="quote-author"></p>
+    <button id="new-quote-btn" onclick="showRandomQuote()">New Quote</button>
+  </div>
+
+  <script>
+    const quotes = [
+      { text: "It's not a bug, it's an undocumented feature request.", author: "Every Engineer, Ever" },
+      { text: "Let's take this offline — said before every meeting that should have been an email.", author: "Corporate Wisdom" },
+      { text: "We don't have a roadmap, we have a vibe.", author: "Anonymous PM" },
+      { text: "The MVP is done. It just needs 40 more features first.", author: "Product Team" },
+      { text: "Can we make the button more... pop?", author: "Every Stakeholder" },
+      { text: "Agile means we plan for two weeks and pray for one.", author: "Scrum Survivor" },
+      { text: "This meeting could have been a Slack message. This Slack message could have been silence.", author: "Remote Worker Proverb" },
+      { text: "Our velocity is high, our direction is unknown.", author: "Sprint Retro Notes" },
+      { text: "I don't always test my code, but when I do, I do it in production.", author: "The Bold Developer" },
+      { text: "Deadlines are just suggestions with anxiety attached.", author: "Project Manager" },
+      { text: "We pivoted so many times we're basically a lazy Susan.", author: "Startup Founder" },
+      { text: "Priority: P0. Also priority: everything else.", author: "Backlog Grooming" },
+      { text: "The demo worked yesterday. Yesterday was a simpler time.", author: "QA Engineer" },
+      { text: "Let's circle back — a phrase that guarantees we will not circle back.", author: "Meeting Culture" },
+      { text: "Our KPI is 'vibes trending upward.'", author: "Growth Team" },
+      { text: "404: Roadmap not found.", author: "Engineering Manager" },
+      { text: "We're not behind schedule, the schedule was ahead of reality.", author: "Optimistic PM" },
+      { text: "Ship it and pray is a valid agile methodology.", author: "DevOps Wisdom" },
+      { text: "Feedback welcome, as long as it agrees with the original design.", author: "Design Review" },
+      { text: "Our stand-up lasted 45 minutes. We remain standing in spirit only.", author: "Tired Developer" }
+    ];
+
+    let lastIndex = -1;
+
+    function showRandomQuote() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (index === lastIndex && quotes.length > 1);
+      lastIndex = index;
+
+      const quote = quotes[index];
+      document.getElementById('quote-text').textContent = quote.text;
+      document.getElementById('quote-author').textContent = '— ' + quote.author;
+    }
+
+    showRandomQuote();
+  </script>
+
+</body>
+</html>
